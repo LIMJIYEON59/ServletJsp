@@ -10,23 +10,42 @@
 </head>
 <body>
 	<h2>학생 리스트</h2>
+	<div>
+		<from action="<%=request.getContextPath() %>/student/List" method="get">
+			<input type="search" name="searchWord">
+			<input type="submit" value="찾기">
+		</fotm>
+	</div>
+
+	
 	<%
 	// JSP Tag <%...이다 여기 안에는 자바문법을 따르면된다.
-	String a = (String)request.getAttribute("aaa");
-	String b = (String)request.getAttribute("bbb");
-	int c = (int)request.getAttribute("ccc"); //()괄호 안에 int나 Integer 쓴다.
 	List<StudentVo> volist = (List<StudentVo>)request.getAttribute("studentList");
+	String searchWord = (String)request.getAttribute("studentList");
+	if(searchWord != null){
+		%>
+		<h3><%=searchWord %>검색결과</h3>
+		<h5><a href="<%=request.getContextPath() %>/student/List">전체보기</a></h5>
+		<%
+	}
+	if(volist == null || volist.size() == 0) {
+	//if(volist == null) P
+	//if(volist.size() == 0) {
 	%>
-	<!-- 이제 화면에 뿌려보겠다. (주석처리 하나씩 해야함) -->
-	<%-- <%=a %> --%>
-	<%-- <%=b %> --%>
-	<%-- <%=c %> --%>
-	<%-- <%= volist %> --%>
+	<h2>결과물이 없습니다.</h2>		
+	<%
+	}else{
+	%>
+	
 	<table border= "1">
 		<tr>
-			<td>학번</td>
-			<td>이름</td>	
+			<td>학생 번호</td>
+			<td>학과 번호</td>
+			<td>학생 이름</td>	
+			<td>학생 주소</td>	
 			<td>입학일</td>	
+			<td>휴학일</td>	
+			<td>지도 교수 번호</td>	
 		</tr>
 		<%
 		for(int i=0; i<volist.size(); i++){
@@ -36,16 +55,23 @@
 		<!-- tr td는 html꺼라 < % 안에 들어갈 수가 없다 -->
 		<!-- 클릭시 이동 -->
 		<tr> 
-			<td><a href="<%=request.getContextPath()%>/student/get?sno=<%=vo.getStudentNO()%>"><%=vo.getStudentNO()%></a></td>
+			<td><a href="<%=request.getContextPath()%>/student/get?sno=<%=vo.getStudentNO()%>"><%=vo.getStudentNO()%></a></td>			
+			<td><%=vo.getStudentNO()%></td>	
 			<td><%=vo.getStudentName()%></td>	
+			<td><%=vo.getStudentSsn()%></td>	
+			<td><%=vo.getStudentAddress()%></td>	
 			<td><%=vo.getEntranceDate()%></td>	
-		</tr>
-		 
-		
+			<td><%=vo.getAbsenceYn()%></td>	
+			<td><%=vo.getCoachProfessorNo()%></td>	
+		</tr>	
 		<%
-		}
-		%>			
+		}	//for
+		%>	
+				
 	</table>
+	<%
+	} //else
+	%>
 	
 </body>
 </html>

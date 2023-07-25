@@ -20,16 +20,16 @@
 	%>
 	<table border="1">
 		<tr>
-			<td>이름</td>
-			<td><%=vo.getStudentName() %></td>
+				<td>이름</td>
+				<td><%=vo.getStudentName() %></td>
 		</tr>
 		<tr>
-			<td>소속학과번호</td>
-			<td><%=vo.getDepartmentNO() %></td>
+				<td>소속학과번호</td>
+				<td><%=vo.getDepartmentNO() %></td>
 		</tr>
 		<tr>
-			<td>소속학과이름</td>
-			<td><%=vo.getDepartmentName() %></td>
+				<td>소속학과이름</td>
+				<td><%=vo.getDepartmentName() %></td>
 		</tr>
 	</table>
 	

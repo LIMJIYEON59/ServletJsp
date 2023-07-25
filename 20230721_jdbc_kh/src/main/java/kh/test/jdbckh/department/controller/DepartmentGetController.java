@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kh.test.jdbckh.department.model.dao.DepartmentDao;
+import kh.test.jdbckh.department.model.vo.DepartmentVo;
+
 /**
  * Servlet implementation class DepartmentGetController
  */
@@ -25,7 +28,13 @@ public class DepartmentGetController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			String departmentNo = request.getParameter("dno");
 		
+			DepartmentDao dao = new DepartmentDao();
+			DepartmentVo vo = dao.selectOnedepartment(departmentNo);
+			request.setAttribute("oneVo", vo);
+			
+			request.getRequestDispatcher("/WEB-INF/veiw/department/get.jsp").forward(request, response);
 
 	
 	}
