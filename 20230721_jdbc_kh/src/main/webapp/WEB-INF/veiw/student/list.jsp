@@ -55,22 +55,37 @@
 		<!-- tr td는 html꺼라 < % 안에 들어갈 수가 없다 -->
 		<!-- 클릭시 이동 -->
 		<tr> 
-			<td><a href="<%=request.getContextPath()%>/student/get?sno=<%=vo.getStudentNO()%>"><%=vo.getStudentNO()%></a></td>			
-			<td><%=vo.getStudentNO()%></td>	
-			<td><%=vo.getStudentName()%></td>	
-			<td><%=vo.getStudentSsn()%></td>	
-			<td><%=vo.getStudentAddress()%></td>	
-			<td><%=vo.getEntranceDate()%></td>	
-			<td><%=vo.getAbsenceYn()%></td>	
-			<td><%=vo.getCoachProfessorNo()%></td>	
+			<td>
+			<a href="<%=request.getContextPath()%>/student/get?sno=<%=vo.getStudentNO()%>">
+			<%=vo.getStudentNO()%>
+			</a></td>			
+			<td>
+			<a href="<%=request.getContextPath()%>/student/get?sno=<%=vo.getStudentNO() %>">
+			<%=vo.getStudentName() %>
+			</a>
+			</td>
+			<td><%=vo.getEntranceDate() %></td>
+			<td><%=vo.getStudentAddress() %></td>
 		</tr>	
 		<%
 		}	//for
 		%>	
 				
 	</table>
+	
+	
+	<div>
 	<%
-	} //else
+	for(int i=1; i<=10; i++) {
+	%>
+		<a href="<%=request.getContextPath()%>/student/list?pageNo=<%=i%>"><span><%=i%></span></a>
+		,
+	<%
+	}  //for
+	%>
+	</div>
+	<%
+	}  //else
 	%>
 	
 </body>
