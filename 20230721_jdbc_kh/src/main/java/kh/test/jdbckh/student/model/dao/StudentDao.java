@@ -271,4 +271,49 @@ public class StudentDao {
 		// 확인용 System.out.println(result);
 		return result;
 	}
+	// count를 읽어 달라는 소리
+	// 쿼리문 작성 > null > conn=get... > 총글개수 쿼리문 실행부분 > executeQuery > next (next를할 때 별칭 꼭! 사용하기(항수)) > catch > finally
+	public int getTotalCount() {
+		int result = 0; //총글개수
+		String queryTotalCnt = "select count(*) cnt from tb_student"; //함수를 썼다면 [count(*)] cnt 별칭을 꼭 써야한다.
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			
+			//총글개수 알아오기 위한 query 실행부분
+			pstmt = conn.prepareStatement(queryTotalCnt);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				//오류 totalCnt = rs.getInt("count(*)");
+				result = rs.getInt("cnt");
+				// totalCnt = rs.getInt(1); //  <-인덱스번지
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+			close(conn);
+		}
+		System.out.println("총글개수 :" + result);
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
