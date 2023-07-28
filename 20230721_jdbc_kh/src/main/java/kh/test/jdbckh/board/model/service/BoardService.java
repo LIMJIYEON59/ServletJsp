@@ -1,4 +1,4 @@
-package kh.test.jdbckh.board.model.dao;
+package kh.test.jdbckh.board.model.service;
 
 import static kh.test.jdbckh.common.jdbc.JdbcTemplate.close;
 import static kh.test.jdbckh.common.jdbc.JdbcTemplate.getConnectionkh1;
@@ -6,6 +6,7 @@ import static kh.test.jdbckh.common.jdbc.JdbcTemplate.getConnectionkh1;
 import java.sql.Connection;
 import java.util.List;
 
+import kh.test.jdbckh.board.model.dao.BoardDao;
 import kh.test.jdbckh.board.model.dto.BoardDto;
 
 public class BoardService {
@@ -18,7 +19,6 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-
 	// 한 행 읽기 - PK로where조건
 	public BoardDto selectOne(int bno){
 		BoardDto result = null;
