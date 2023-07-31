@@ -25,7 +25,7 @@
 		</tr>
 		<tr>
 				<td>소속학과번호</td>
-				<td><%=vo.getDepartmentNO() %></td>
+				<td><%=vo.getDepartmentNo()%></td>
 		</tr>
 		<tr>
 				<td>소속학과이름</td>

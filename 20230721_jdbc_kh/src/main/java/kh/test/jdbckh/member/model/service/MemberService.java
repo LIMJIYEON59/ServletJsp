@@ -1,37 +1,39 @@
-package kh.test.jdbckh.board.model.service;
+package kh.test.jdbckh.member.model.service;
 
 import static kh.test.jdbckh.common.jdbc.JdbcTemplate.close;
-import static kh.test.jdbckh.common.jdbc.JdbcTemplate.getConnectionkh1;
-import static kh.test.jdbckh.common.jdbc.JdbcTemplate.setAutoCommit;
 import static kh.test.jdbckh.common.jdbc.JdbcTemplate.commit;
+import static kh.test.jdbckh.common.jdbc.JdbcTemplate.getConnectionkh1;
 import static kh.test.jdbckh.common.jdbc.JdbcTemplate.rollback;
+import static kh.test.jdbckh.common.jdbc.JdbcTemplate.setAutoCommit;
 
 import java.sql.Connection;
 import java.util.List;
 
 import kh.test.jdbckh.board.model.dao.BoardDao;
-import kh.test.jdbckh.board.model.dto.BoardDto;
+import kh.test.jdbckh.board.model.dao.MemberDao;
+import kh.test.jdbckh.member.model.dto.Member;
 
-public class BoardService {
-	private BoardDao dao = new BoardDao();
+public class MemberService {
+	private MemberDao dao = new MemberDao();
+	
 	// 모든 행 읽기
-	public List<BoardDto> selectList(){
-		List<BoardDto> result = null;
+	public List<Member> selectList(){
+		List<Member> result = null;
 		Connection conn = getConnectionkh1();
 		result = dao.selectList(conn);
 		close(conn);
 		return result;
 	}
 	// 한 행 읽기 - PK로where조건
-	public BoardDto selectOne(int bno){
-		BoardDto result = null;
+	public Member selectOne(int bno){
+		Member result = null;
 		Connection conn = getConnectionkh1();
 		result = dao.selectOne(conn, bno);
 		close(conn);
 		return result;
 	}
-	// 한 행 삽입 - BoardDto 자료형을 받아와야 함.
-	public int insert(BoardDto dto){
+	// 한 행 삽입 - Member 자료형을 받아와야 함.
+	public int insert(Member dto){
 		int result = 0;
 		Connection conn = getConnectionkh1();
 		setAutoCommit(conn, false);
@@ -51,8 +53,8 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-	// 한 행 수정 - BoardDto 또는 경우에 따라서 특정 컬럼값만 받아오기도 함.
-	public int update(BoardDto dto){
+	// 한 행 수정 - Member 또는 경우에 따라서 특정 컬럼값만 받아오기도 함.
+	public int update(Member dto){
 		int result = 0;
 		Connection conn = getConnectionkh1();
 		result = dao.update(conn, dto);
@@ -67,22 +69,5 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-	
-	//// 추가 
-	// 페이징 처리 + 검색
-	public int getTotalCount(String searchWord) {
-		int result = 0;
-		Connection conn = getConnectionkh1();
-		result = dao.getTotalCount(conn, searchWord);
-		close(conn);
-		return result;
-	}
-	public List<BoardDto> selectList(int currentPage, int pageSize, String searchWord){
-		List<BoardDto> result = null;
-		Connection conn = getConnectionkh1();
-		int totalCount = getTotalCount(searchWord);
-		result = dao.selectList(conn, currentPage, pageSize, totalCount, searchWord);
-		close(conn);
-		return result;
-	}
+
 }

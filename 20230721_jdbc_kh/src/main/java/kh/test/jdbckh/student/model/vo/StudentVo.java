@@ -1,7 +1,5 @@
 package kh.test.jdbckh.student.model.vo;
 
-import java.sql.Date;
-
 public class StudentVo {
 //	------------------ -------- ------------- 
 //	STUDENT_NO         NOT NULL VARCHAR2(10)  
@@ -11,36 +9,67 @@ public class StudentVo {
 //	STUDENT_ADDRESS             VARCHAR2(200) 
 //	ENTRANCE_DATE               DATE          
 //	ABSENCE_YN                  CHAR(1)       
-//	COACH_PROFESSOR_NO          VARCHAR2(20)
-	
-	//자바:클래스 이름 빼고 다 소문자, 언더바 대신 카멜기법 
-	private String studentNO;
-	private String departmentNO;
+//	COACH_PROFESSOR_NO          VARCHAR2(20)  
+	private String studentNo;
+	private String departmentNo;
 	private String studentName;
 	private String studentSsn;
 	private String studentAddress;
-	private Date entranceDate; //date라고 쓰고 java sql을 써야한다.
-	private String absenceYn; //CHAR불편 걍 String 쓰삼
+	// view에서 입력받은 데이터가 있는 경우 String
+	private String entranceDate;
+	// private Date entranceDate;
+	private String absenceYn;
 	private String coachProfessorNo;
+	
 	private String departmentName;
+	
+
+	public StudentVo() {
+	}
+
+	public StudentVo(String studentNo, String departmentNo, String studentName, String studentSsn,
+			String studentAddress, String entranceDate, String absenceYn, String coachProfessorNo) {
+		this.studentNo = studentNo;
+		this.departmentNo = departmentNo;
+		this.studentName = studentName;
+		this.studentSsn = studentSsn;
+		this.studentAddress = studentAddress;
+		this.entranceDate = entranceDate;
+		this.absenceYn = absenceYn;
+		this.coachProfessorNo = coachProfessorNo;
+	}
+
+	public StudentVo(String studentNo, String departmentNo, String studentName, String studentSsn,
+			String studentAddress, String entranceDate, String absenceYn, String coachProfessorNo,
+			String departmentName) {
+		this.studentNo = studentNo;
+		this.departmentNo = departmentNo;
+		this.studentName = studentName;
+		this.studentSsn = studentSsn;
+		this.studentAddress = studentAddress;
+		this.entranceDate = entranceDate;
+		this.absenceYn = absenceYn;
+		this.coachProfessorNo = coachProfessorNo;
+		this.departmentName = departmentName;
+	}
 	@Override
 	public String toString() {
-		return "StudentVo [studentNO=" + studentNO + ", departmentNO=" + departmentNO + ", studentName=" + studentName
+		return "StudentVo [studentNo=" + studentNo + ", departmentNo=" + departmentNo + ", studentName=" + studentName
 				+ ", studentSsn=" + studentSsn + ", studentAddress=" + studentAddress + ", entranceDate=" + entranceDate
 				+ ", absenceYn=" + absenceYn + ", coachProfessorNo=" + coachProfessorNo + ", departmentName="
 				+ departmentName + "]";
 	}
-	public String getStudentNO() {
-		return studentNO;
+	public String getStudentNo() {
+		return studentNo;
 	}
-	public void setStudentNO(String studentNO) {
-		this.studentNO = studentNO;
+	public void setStudentNo(String studentNo) {
+		this.studentNo = studentNo;
 	}
-	public String getDepartmentNO() {
-		return departmentNO;
+	public String getDepartmentNo() {
+		return departmentNo;
 	}
-	public void setDepartmentNO(String departmentNO) {
-		this.departmentNO = departmentNO;
+	public void setDepartmentNo(String departmentNo) {
+		this.departmentNo = departmentNo;
 	}
 	public String getStudentName() {
 		return studentName;
@@ -60,10 +89,10 @@ public class StudentVo {
 	public void setStudentAddress(String studentAddress) {
 		this.studentAddress = studentAddress;
 	}
-	public Date getEntranceDate() {
+	public String getEntranceDate() {
 		return entranceDate;
 	}
-	public void setEntranceDate(Date entranceDate) {
+	public void setEntranceDate(String entranceDate) {
 		this.entranceDate = entranceDate;
 	}
 	public String getAbsenceYn() {
@@ -84,9 +113,6 @@ public class StudentVo {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
-	
-	
-	
 	
 	
 }

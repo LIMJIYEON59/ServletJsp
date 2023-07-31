@@ -9,8 +9,18 @@
 <head>
 <meta charset="UTF-8">
 <title>EL - </title>
+<link href="<%=request.getContextPath() %> /resources/css/reset.css" rel="stylesgeet">
+<link href="<%=request.getContextPath() %> /resource/css/reset.css" rel="stylesgeet">
 </head>
 <body>
+<img alt="contextPath 없으면 경로 맞지 않음" src="/resources/images/top_logo.jpg">
+<img alt="jpg테스트" src="<%=request.getContextPath() %>/images/resources/images/top_logo.jpg">
+<img alt="jpg테스트" src="<%=request.getContextPath() %>/images/resources/images/domino.jsp">
+<img alt="jpg테스트" src="<%=request.getContextPath() %>/images/resources/images/a.svg">
+
+
+
+
 <h2> EL-ExpressionLanguage <br>단점: java for/if/변수 사용 불가<br>보완:jstl의 foreach/if/set변수 사용 </h2>
 
 c:if는 true false 조건만 가능함 - else 없음.
