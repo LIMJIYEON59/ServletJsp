@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kh.test.jdbckh.board.model.dao.BoardService;
 import kh.test.jdbckh.board.model.dto.BoardDto;
+import kh.test.jdbckh.board.model.service.BoardService;
 
 /**
  * Servlet implementation class BoardListServlet
@@ -18,22 +18,15 @@ import kh.test.jdbckh.board.model.dto.BoardDto;
 @WebServlet("/board/list")
 public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BoardListServlet() {
-        super();
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. request.gerparameter()
-		// 2. service.selectLisr();
+		// 1. request.getParameter()
+		// 2. service.selectList();
 		List<BoardDto> result = new BoardService().selectList();
-		// 3.
+		// 3. 
 		request.setAttribute("boardList", result);
 		// 4.
 		request.getRequestDispatcher("/WEB-INF/view/board/list.jsp").forward(request, response);
