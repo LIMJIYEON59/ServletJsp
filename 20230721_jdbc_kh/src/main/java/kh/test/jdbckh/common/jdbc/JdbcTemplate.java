@@ -28,7 +28,7 @@ public class JdbcTemplate {
 		}
 		return conn;
 	}
-	public static Connection getConnectionKhl() {
+	public static Connection getConnectionkh1() {
 		try {
 			// 1. driver 있다면 로딩함. // 없다면 ClassNotFoundException 오류 발생
 			Class.forName("oracle.jdbc.driver.OracleDriver");
