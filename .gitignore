@@ -1,6 +1,10 @@
 # Compiled class file
 *.class
 bin/
+build/
+*.properties
+properties
+.matadate/
 
 
 # Log file
