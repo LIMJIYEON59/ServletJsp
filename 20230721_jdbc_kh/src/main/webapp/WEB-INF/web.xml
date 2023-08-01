@@ -19,7 +19,7 @@
 	<!--Aaa는 내가 임의로 짓는 이름 -->
 	<filter>
 		<filter-name>EncodingFilter</filter-name>
-		<filter-class>kh.test.jdbchk.common.filter.EncodingFilter</filter-class>
+		<filter-class>kh.test.jdbckh.common.filter.EncodingFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>EncodingFilter</filter-name>
@@ -36,6 +36,40 @@
 		<url-pattern>*.login</url-pattern>
 	</filter-mapping> 
 -->
+
+	<!--  404 오류가 뜨면 보여줘라는 뜻(오류페이지마다 다르게 값을 적는다.) -->
+<!-- 	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/view/error404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/view/error/error500.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type> 
+		<location>/WEB-INF/view/error/errorNP.jsp</location>
+	</error-page> 
+-->
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 </web-app>
 
