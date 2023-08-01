@@ -1,15 +1,11 @@
 package kh.test.jdbckh.member.model.service;
 
 import static kh.test.jdbckh.common.jdbc.JdbcTemplate.close;
-import static kh.test.jdbckh.common.jdbc.JdbcTemplate.commit;
 import static kh.test.jdbckh.common.jdbc.JdbcTemplate.getConnectionkh1;
-import static kh.test.jdbckh.common.jdbc.JdbcTemplate.rollback;
-import static kh.test.jdbckh.common.jdbc.JdbcTemplate.setAutoCommit;
 
 import java.sql.Connection;
 import java.util.List;
 
-import kh.test.jdbckh.board.model.dao.BoardDao;
 import kh.test.jdbckh.board.model.dao.MemberDao;
 import kh.test.jdbckh.member.model.dto.Member;
 
@@ -36,20 +32,7 @@ public class MemberService {
 	public int insert(Member dto){
 		int result = 0;
 		Connection conn = getConnectionkh1();
-		setAutoCommit(conn, false);
-		if(dto.getBno() == 0) { // 원본글작성
-			result = dao.insert(conn, dto);
-		}else {   // 답글작성
-			result = dao.update(conn, dto);
-			if(result > -1) {
-				result = dao.insert(conn, dto);
-			}
-		}
-		if(result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
+		result = dao.insert(conn, dto);
 		close(conn);
 		return result;
 	}
@@ -69,5 +52,51 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	
+	// 추가 (둘 중에 아무거나 선택해서 사용하면됨,2번째꺼 추천)
+	// login
+	public int login( Member vo) {
+		int result = 0;
+		Connection conn = getConnectionkh1();
+		result = dao.login(conn, vo);
+		close(conn);
+		return result;
 
+	}
+	// login
+	public String login( String mid) {
+		String result = null;
+		Connection conn = getConnectionkh1();
+		result = dao.login(conn, mid);
+		close(conn);
+		return result;
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

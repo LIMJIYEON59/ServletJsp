@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kh.test.jdbckh.member.model.dto.Member;
+import kh.test.jdbckh.member.model.service.MemberService;
 
 /**
  * Servlet implementation class LoginDoServlet
@@ -21,6 +22,17 @@ public class LoginDoServlet extends HttpServlet {
 		String mid = request.getParameter("mid");
 		String mpwd = request.getParameter("mpwd");
 		Member vo = new Member(mid, mpwd);
+		String result = new MemberService().login(mid);
+		String sendUrl = request.getContextPath();
+		// TODO session
+		if(mpwd.equals(result)) {
+			System.out.println("로그인 성공");
+			sendUrl += "/board/list";
+		}else {
+			System.out.println("로그인 실패");
+			sendUrl += "/error";
+		}
+		response.sendRedirect(sendUrl);
 	}
 
 }

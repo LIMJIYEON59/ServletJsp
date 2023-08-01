@@ -18,8 +18,8 @@ public class MemberDao {
 		public List<Member> selectList(Connection conn) {
 			System.out.println("[Member Dao selectList]");
 			List<Member> result = new ArrayList<Member>();
-
-			String query = " select BNO, BTITLE, to_char(BWRITE_DATE, 'yyyy-mm-dd hh24:mi:ss') BWRITE_DATE, MID, BREF, BRE_LEVEL, BRE_STEP from BOARD ";
+			//TODO
+			String query = "select * from member ";	
 			
 
 			PreparedStatement pstmt = null;
@@ -30,13 +30,9 @@ public class MemberDao {
 
 				while (rs.next() == true) {
 					Member dto = new Member(
-//							rs.getInt("BNO"),
-//							rs.getString("BTITLE"),
-//							rs.getString("BWRITE_DATE"),
-//							rs.getString("MID"),
-//							rs.getInt("BREF"),
-//							rs.getInt("BRE_LEVEL"),
-//							rs.getInt("BRE_STEP")					
+							rs.getString("MID"),
+							rs.getString("MNAME"),
+							rs.getString("MEMAIL")
 							);
 					result.add(dto);
 				}
@@ -63,6 +59,7 @@ public class MemberDao {
 		public int insert(Connection conn, Member dto) {
 			System.out.println("[Member Dao insert] dto:" + dto);
 			int result = 0;
+			// TODO
 			String query = "";
 			
 			PreparedStatement pstmt = null;
@@ -78,28 +75,13 @@ public class MemberDao {
 			System.out.println("[Member Dao insert] return:" + result);
 			return result;
 		}
-		public int insertReply(Connection conn, Member dto) {
-			System.out.println("[Member Dao insertReply] dto:" + dto);
-			int result = 0;
-			String query = "insert into BOARD values (SEQ_BOARD_BNO.nextval, ?, ?, default, ?    , (select bref from board where bno=?)    , (select bre_level+1 from board where bno=?)    , (select bre_step+1 from board where bno=?)    )";
-			PreparedStatement pstmt = null;
-			try {
-				pstmt = conn.prepareStatement(query);
-				//TODO
-				result = pstmt.executeUpdate();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-			}
-			System.out.println("[Member Dao insertReply] return:" + result);
-			return result;
-		}
+
 		// 한 행 수정 - Member 또는 경우에 따라서 특정 컬럼값만 받아오기도 함.
 		public int update(Connection conn, Member dto) {
 			System.out.println("[Member Dao update] dto:" + dto);
-			int result = -1;  // update 경우 0도 정상 결과값일 수 있으므로 -1을 초기값
-			String query = "update board set BRE_STEP = BRE_STEP + 1 where BRE_STEP > (select bre_step from board where bno=?)  and BREF = (select bref from board where bno=?)";
+			int result = -1;  
+			//TODO
+			String query = "";
 			PreparedStatement pstmt = null;
 			try {
 				pstmt = conn.prepareStatement(query);
@@ -122,6 +104,90 @@ public class MemberDao {
 			System.out.println("[Member Dao delete] return:" + result);
 			return result;
 		}
-
-
+		
+		
+		// 추가
+		// login : 성공 :1, 실패시:0	--> 암호화 적용 힘든 방식
+		public int login(Connection conn, Member vo) {
+			System.out.println("[Member Dao login] vo:" + vo);
+			
+			int result = 0;
+			String query="select count(*) cnt from member where mid=? and mpwd=?";
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, vo.getMid());
+				pstmt.setString(2, vo.getMpwd());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					//result = rs.getInt(1);
+					result = rs.getInt("cnt");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			System.out.println("[Member Dao login] return:" + result);
+			return result;
+		}
+		
+		// 2번째 방식 id만 들고올거임
+		// login : mpwd를 return 함 id 존재하지 않으면 return = null이 될거다. (로그인시 mpwd를 리턴할거임 그래서 밑에 String을 리턴하는거임) 
+			//리턴값이 널이면 아이디가 존재하지x, 패스워드를 리턴하면 패스워드를 리턴하면서 아디는 존재한 상태에서 패스워드가 맞는지 아닌지 컨트롤러가 판단을 할 수 있다. 
+				public String login(Connection conn, String mid) {
+					System.out.println("[Member Dao login] mid:" + mid);
+					
+					String result = null;
+					String query="select mpwd from member where mid=?";
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					try {
+						pstmt = conn.prepareStatement(query);
+						pstmt.setString(1, mid);
+						rs = pstmt.executeQuery();
+						if(rs.next()) {
+							//result = rs.getInt(1);
+							result = rs.getString("mpwd");
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						close(pstmt);
+					}
+					System.out.println("[Member Dao login] return:" + result);
+					return result;
+				}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }
