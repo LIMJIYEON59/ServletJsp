@@ -19,10 +19,17 @@ import kh.test.jdbckh.board.model.service.BoardService;
 public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("[ejkim] 세션 attribute");
+		System.out.println(request.getSession().getAttribute("SsLoginId"));	//계속 유지가 되는 애들
+		System.out.println(request.getAttribute("SsLoginId"));
+		String msg = (String)request.getSession().getAttribute("successFailMsg");
+		if(msg != null && !msg.equals("")) {
+			request.setAttribute("successFailMsg", msg);
+			request.getSession().removeAttribute("successFailMsg");
+		}
+		
 		// 1. request.getParameter()
 		// 2. service.selectList();
 		List<BoardDto> result = new BoardService().selectList();
