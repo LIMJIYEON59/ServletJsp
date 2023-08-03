@@ -16,11 +16,39 @@ public class DepartmentDao {
 	// 모든 행 읽기
 	public List<DepartmentDto> selectList(Connection conn){
 		System.out.println("[Dept Dao selectList]");
-		List<DepartmentDto> result = null;
-		//TODO
+		String query = "select DEPARTMENT_NO, DEPARTMENT_NAME, CATEGORY, OPEN_YN, CAPACITY from tb_department";
+		List<DepartmentDto> result = new ArrayList<DepartmentDto>();
+		PreparedStatement pstmt = null;
+		System.out.println("[Dept Dao selectList] return:"+result);
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next() == true) {
+//				DEPARTMENT_NO
+//				DEPARTMENT_NAME
+//				CATEGORY
+//				OPEN_YN
+//				CAPACITY
+				DepartmentDto dto = new DepartmentDto();
+				dto.setDepartmentNo( rs.getString("DEPARTMENT_NO"));
+				dto.setDepartmentName( rs.getString("DEPARTMENT_NAME"));
+				dto.setCategory( rs.getString("CATEGORY"));
+				dto.setOpenYn( rs.getString("OPEN_YN"));
+				dto.setCapacity( rs.getInt("CAPACITY"));
+				result.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
 		System.out.println("[Dept Dao selectList] return:"+result);
 		return result;
 	}
+	
 	// 한 행 읽기 - PK로where조건
 	public DepartmentDto selectOne(Connection conn, String departmentNo){
 		System.out.println("[Dept Dao selectOne] departmentNo:"+departmentNo);
