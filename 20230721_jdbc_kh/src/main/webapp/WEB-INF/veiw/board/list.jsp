@@ -16,8 +16,27 @@
 </style>
 </head>
 <body>
-
 <div>
+[ <%= request.getSession().getAttribute("SsLoginId") %>] <hr>
+[ <%= session.getAttribute("SsLoginId") %>] <hr>
+[ ${SsLoginId } ]   <hr>
+[ ${srssion SsLoginId } ]	<hr>
+[ ${successMsg} ]	<hr>
+[ ${successFailMsg } ]	<hr>
+<script>
+	var msg = '${successFailMsg}';
+	if(!msg) {
+		alert(msg);
+	}
+</script>
+<c:choose>
+	<c:when test="${not empty SsLoginId }">
+<a href ="${pagerContext.request.contectPath}/login">로그아웃</a>
+	</c:when>
+	<c:otherwise>
+<a href ="${pagerContext.request.contectPath}/login">로그인</a>
+	</c:otherwise>
+</c:choose>
 <a href="<%=request.getContextPath()%>/login">로그인</a>
 </div>
 
