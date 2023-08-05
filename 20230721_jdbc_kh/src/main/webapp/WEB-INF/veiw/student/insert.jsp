@@ -16,8 +16,12 @@
 					<td><input type="text" name="studentNo"></td>
 				</tr>
 				<tr>
-					<th>departmentNo</th>
-					<td><input type="text" name="departmentNo"></td>
+					<th>학과명(학과번호)</th>
+					<td>
+					<select name="departmentNo" >
+						<option>value</option>
+					</select>
+					</td>
 				</tr>
 				<tr>
 					<th>studentName</th>
