@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<!-- config는 딱 1개 mapper는 여러개 존재 가능 -->
+<!--아이디 비밀번호 각각 하나마다 만들어 줘야함 e로 감싸진 것들  -->
+<configuration>
+	<settings>
+		<!-- 대소문자 완전 구분함. null 값 처리 -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<!-- _ 를 카멜기법으로  
+		<setting name="mapUnderscoreToCamelCase" value="true"/>		
+		-->
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="kh.test.mybatis.department.model.dto.DepartmentDto" alias="DepartmentDto2"/>
+	</typeAliases>
+	
+		<environments default="development2">
+			 <environment id="development1">
+		 		<transactionManager type="JDBC"></transactionManager>
+		 		<dataSource type="POOLED">
+		   				<property name="driver" value="jdbc.driver=oracle.jdbc.driver.OracleDriver"/>
+		 				<property name="url" value="jdbc.url=jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+		 				<property name="username" value="jdbc.username=kh"/>
+		 				<property name="password" value="jdbc.password=kh"/>
+		 		</dataSource>
+			 </environment>
+			<environment id="development2">
+			 	<transactionManager type="JDBC"></transactionManager>
+			 	<!-- TODO -->
+			 	<dataSource type="POOLED">
+		 				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+		 				<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+		 				<property name="username" value="jdbc.username=scott"/>
+		 				<property name="password" value="jdbc.password=tiger"/>
+		 		</dataSource>
+			 </environment>
+		</environments>
+	
+	<mappers>
+	<!-- namespace가 중요 구분자가 됨. 각각 unique한 이름으로 지어주세요. -->
+		<mapper resource="./mappers/department-mapper.xml" />
+		<mapper resource="./mappers/board-mapper.xml" />
+	</mappers>
+	
+</configuration>
