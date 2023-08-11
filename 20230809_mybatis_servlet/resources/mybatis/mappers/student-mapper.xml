@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="student1">	<!-- 대신 얘가 절대 같으면 안됨 -->
+
+	<!-- 같은 이름의 아이디가 있어도됨 depart... board...stu...의 id="resultDept3"이거 말야 -->
+	<resultMap type="StudentVo2" id="resultMap3"> <!-- 아이디는 내맘대로 -->
+		<!-- id는 주로 PK 컬럼을 작성. 그외 result에 작성 -->
+		<id property="studentNo" column="STUDENT_NO" /> <!-- 컬럼에서 꺼낸 것을 property채움 -->
+		<result property="departmentNo" column="DEPARTMENT_NO" />
+		<result property="studentName" column="STUDENT_NAME" />
+		<result property="studentSsn" column="STUDENT_SSN" />
+		<result property="studentAddress" column="STUDENT_ADDRESS" />
+		<result property="entranceDate" column="ENTRANCE_DATE" />
+		<result property="absenceYn" column="ADSENCE_YN" />
+		<result property="coachProfessorNo" column="COACH_PROFESSOR_NO" />
+	</resultMap>
+
+	<!-- resultType="DepartmentDto2" 이렇게 사용 불가. 컬럼명과 필드명이 다름. -->
+	<!-- resultMap=""과 resultType="" 둘 중 하나만 작성해야함. list, arraylist 는 -->
+	<select id="selectList0" resultMap="resultMap3">	<!-- map인 경우 -->
+		SELECT student_No, department_No, student_Name, student_Ssn, student_Address,
+			to_char(entrance_Date, 'yyyy-mm-dd'), absence_Yn, coach_Professor_No
+		FROM TB_student
+	</select>
+	<select id="selectOne0" resultMap="resultMap3" parameterType="string"> <!-- 니가 들고 온 게 스트링 모양이군 -->
+		SELECT student_No, department_No, student_Name, student_Ssn, studentAddress,
+			to_char(entrance_Date, 'yyyy-mm-dd'), absence_Yn, coach_Professor_No
+		FROM TB_student
+		WHERE student_No = #{anyname}
+	</select>
+	<insert id="insert0" parameterType="StudentVo2"> <!-- 인서트 경우 parmeterType이 무조건 있음 -->
+		INSERT INTO TB_student ( student_No, department_No, student_Name, student_Ssn, student_Address,
+			entrance_Date, absence_Yn, coach_Professor_No)
+		VALUES (#{studentNo}, #{departmentNo}, #{studentName}, #{studentSsn}, #{studentAddress},
+				to_data(#{entranceDate}, 'yyyy-mm-dd',#{absenceYn},#{'coach_Professor_No'}
+		)
+	</insert>
+</mapper>

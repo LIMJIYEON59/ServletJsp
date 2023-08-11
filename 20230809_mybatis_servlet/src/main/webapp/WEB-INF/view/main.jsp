@@ -7,6 +7,7 @@
 <title>mybatis메인</title>
 </head>
 <body>
-<h2>mybatis 메인페이지</h2>
+<h2>mybatis메인페이지</h2>
+[ ${stdList } ]
 </body>
 </html>
