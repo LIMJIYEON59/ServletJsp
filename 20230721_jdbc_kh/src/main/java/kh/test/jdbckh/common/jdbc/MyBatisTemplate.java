@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class MyBatisTemplate {
 	public static SqlSession getSqlSession() {
 		SqlSession session = null;
-		
+		//
 		try {
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml"));
 		} catch (IOException e) {
