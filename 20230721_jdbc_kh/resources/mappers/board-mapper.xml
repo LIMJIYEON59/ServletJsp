@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="boardMapper1">
 <resultMap type="BoardDto" id="BoardResultMap1">
-	<id property="bno" column="BNO"/>
+	<id property="bno" column="BNO"/>	<!-- pk는 id이다. -->
 	<result property="bcontent" column="bcontent"/>
 	<result property="btitle" column="btitle"/>
 	<result property="bwriteDate" column="bwriteDate"/>
 	<result property="bref" column="bref"/>
-	<collection property="attachFileList">
+	<collection property="attachFileList">	<!-- join하면 필요함 (collection)  -->
 		 <result property="filepath" column="FILE_PATH"/>
 	</collection>
 </resultMap>

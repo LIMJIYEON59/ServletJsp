@@ -2,21 +2,32 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 	<settings>
-		<setting name="jdbcTypeForNull" value="NUll"/> <!-- value 안에 꼭 대문자 -->
+		<setting name="jdbcTypeForNull" value="NULL"/> <!-- value 안에 꼭 대문자 -->
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	<typeAliases>
 		<typeAlias type="kh.test.jdbckh.board.model.dto.AttachFileDto" alias="AttachFileDto"/> <!-- 경로 풀네임  -->
-		<typeAlias type="kh.test.jdbckh.board.model.dto.AttachFileDto" alias="AttachFileDto"/> 
+		<typeAlias type="kh.test.jdbckh.board.model.dto.BoardDto" alias="BoardDto"/> 
 	</typeAliases>
 	<environments default="aaa"> <!-- 밑에 중에 default는 이걸로 할거여  -->
+	
 		<environment id="aaa">
 			<transactionManager type="JDBC"></transactionManager>
 			<dataSource type="POOLED"> <!-- c+s=>검은색 표시가 젤 먼저 오도록 한다. -->
-				<property name="driver" value=""/>
-				<property name="url" value=""/>
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
 				<property name="username" value="kh"/>
 				<property name="password" value="kh"/>
+			</dataSource> 
+	
+		</environment>
+		<environment id="bbb">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="POOLED"> <!-- c+s=>검은색 표시가 젤 먼저 오도록 한다. -->
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+				<property name="username" value="scott"/>
+				<property name="password" value="tiger"/>
 			</dataSource> 
 	
 		</environment>
