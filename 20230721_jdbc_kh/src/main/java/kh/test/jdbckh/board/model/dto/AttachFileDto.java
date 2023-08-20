@@ -1,6 +1,5 @@
 package kh.test.jdbckh.board.model.dto;
 
-import java.util.List;
 
 public class AttachFileDto {
 	private int bno;

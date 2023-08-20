@@ -1,12 +1,5 @@
 package kh.test.jdbckh.board.model.dao;
 
-import static kh.test.jdbckh.common.jdbc.JdbcTemplate.close;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
