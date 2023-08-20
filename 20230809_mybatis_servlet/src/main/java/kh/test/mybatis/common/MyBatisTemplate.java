@@ -1,7 +1,6 @@
 package kh.test.mybatis.common;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -15,10 +14,10 @@ public class MyBatisTemplate {
 		try {
 			// InputStream으로 Mybatis의 설정 정보를 읽어 온다.
 			// InputStream is = Resources.getResourceAsStream(resource);
-			// 읽어 온 Mybatis의 설정 정보를 바탕으로 SqlSessionFactoryBuilder를 생성한다. InputStream is =
+			// 읽어 온 Mybatis의 설정 정보를 바탕으로 SqlSessionFactoryBuilder를 생성한다. 
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(
-					Resources.getResourceAsStream("mybatis-config.xml"));
-			session = factory.openSession();
+					Resources.getResourceAsStream("mybatis-config.xml"));	//InputStream-build
+			session = factory.openSession();	//결과적으로는 이 session을 만드는게 목표이다.
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

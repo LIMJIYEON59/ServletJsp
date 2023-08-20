@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<!-- 순서가 중요하다! settings=>typeAliases=>environments=>mappers이다. -->
 <configuration>
 	<settings>
-		<setting name="jdbcTypeForNull" value="NULL"/> <!-- value 안에 꼭 대문자 -->
+		<setting name="jdbcTypeForNull" value="NULL"/> <!-- name의 이름은 약속된 이름을 사용한다.(mybatis사이트), NULL은 꼭 대문자이다. -->
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	<typeAliases>

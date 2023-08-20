@@ -22,8 +22,8 @@
 		 		<dataSource type="POOLED">
 		   				<property name="driver" value="jdbc.driver=oracle.jdbc.driver.OracleDriver"/>
 		 				<property name="url" value="jdbc.url=jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
-		 				<property name="username" value="kh"/>
-		 				<property name="password" value="kh"/>
+		 				<property name="username" value="kh"/>	<!-- 계정명 -->
+		 				<property name="password" value="kh"/>	<!-- 비번 -->
 		 		</dataSource>
 			 </environment>
 			<environment id="student2">
