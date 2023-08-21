@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="boardMapper1">
+<mapper namespace="boardMapper1"> <!-- 이 페이지를 하나의 class라고 생각했을 때 아무렇게나 적는 이름 -->
 
 <resultMap type="BoardDto" id="BoardResultMap1">
 	<id property="bno" column="BNO"/>	<!-- pk는 id이다. -->

@@ -13,7 +13,7 @@ public class MyBatisTemplate {
 		try {
 			
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(
-					Resources.getResourceAsStream("mybatis-config.xml"));	//() <- resource 바로 아래 만들어져서 그냥 쓰면됨 !! 근데 "/" 이거 안 붙이고! 
+					Resources.getResourceAsStream("mybatis-config.xml"));
 			session = factory.openSession(autoCommit);
 		} catch (IOException e) {
 			e.printStackTrace();
