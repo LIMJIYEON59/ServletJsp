@@ -7,7 +7,7 @@
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="kh.test.jdbckh.board.model.dto.AttachFileDto" alias="AttachFileDto"/> <!-- 경로 풀네임  -->
+		<typeAlias type="kh.test.jdbckh.board.model.dto.AttachFileDto" alias="AttachFileDto"/> <!-- 이게(type)경로 풀네임이다.
 		<typeAlias type="kh.test.jdbckh.board.model.dto.BoardDto" alias="BoardDto"/> 
 	</typeAliases>
 	<environments default="aaa"> <!-- 밑에 중에 default는 이걸로 할거여  -->
